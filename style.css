@@ -9,7 +9,7 @@ div {
 h1 {
     color: black;
     font-weight: bold;
-    font-size: 5rem;
+    font-size: 4.5rem;
 }
 
 p {
@@ -26,6 +26,12 @@ p {
 }
 
 button {
+    width: 5rem;
+    align-self: center;
+    display: block;
+}
+
+.result {
     width: 5rem;
     align-self: center;
     display: block;
@@ -48,5 +54,10 @@ body {
 }
 
 .resultado {
+    display: block;
     font-size: 2rem;
+}
+
+.escondido {
+    display: none;
 }

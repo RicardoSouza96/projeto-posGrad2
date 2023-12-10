@@ -6,12 +6,15 @@ const paises = ['África do Sul','Angola','Argélia','Benim','Botsuana','Burquin
 
 const text = document.getElementById('text');
 const responder = document.querySelector('.submit');
+const divResult = document.querySelector('.resultado');
+const resultado = document.createElement('div');
 
 let nomes = [];
 let pontos = 0;
 
 responder.addEventListener('click', () => {
     nomes = text.value.split(',');
+    nomes = text.value.split(', ');
     verificaAcerto();
     limparTela();
     exibirResultado();
@@ -46,7 +49,6 @@ function verificaAcerto() {
 }
 
 function exibirResultado() {
-    const resultado = document.createElement('div');
     resultado.classList.add('resultado');
     if(pontos == 0) {
         resultado.textContent = `Que pena! Você obteve 0 acertos =(`;
@@ -55,7 +57,24 @@ function exibirResultado() {
         resultado.textContent = `Você acertou ${pontos} nome(s)! Continue estudando!`;
     }
 
-    responder.appendChild(resultado);
+    divResult.appendChild(resultado);
+    tentarNovamente();
+}
+
+function tentarNovamente() {
+    const btnRetry = document.createElement('button');
+    btnRetry.classList.add('result');
+    btnRetry.textContent = 'Tentar novamente';
+    divResult.appendChild(btnRetry);
+    btnRetry.addEventListener('click', () => {
+        for (let i = 0; i < nomes.length; i++) {
+            nomes[i] = '';
+        }
+        pontos = 0;
+        text.value = '';
+        divResult.removeChild(btnRetry);
+        divResult.removeChild(resultado);
+    });
 }
 
 
