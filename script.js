@@ -22,19 +22,11 @@ function limparTela() {
 }
 
 function removerAcentos(texto) {
-    texto = texto.replace(/[Á]/,"A");
-    texto = texto.replace(/[âáã]/,"a");
-    texto = texto.replace(/[ÈÉÊË]/,"E");
-    texto = texto.replace(/[éê]/,"e");
-    texto = texto.replace(/[õ,ó]/,"o");
-    texto = texto.replace(/[ú]/,"u");
-    texto = texto.replace(/[í]/,"i");
-    return texto;
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
 function verificaAcerto() {
     for(let i = 0; i < paises.length; i++) {
-        console.log(paises[i]);
         removerAcentos(paises[i]);
         let nomeFormatado = paises[i].toLowerCase();
         paises[i] = nomeFormatado;
@@ -42,7 +34,6 @@ function verificaAcerto() {
 
     for(let i = 0; i < nomes.length; i++) {
         removerAcentos(nomes[i]);
-        console.log(nomes[i]);
         let nomeFormatado = nomes[i].toLowerCase();
         nomes[i] = nomeFormatado;
     }
